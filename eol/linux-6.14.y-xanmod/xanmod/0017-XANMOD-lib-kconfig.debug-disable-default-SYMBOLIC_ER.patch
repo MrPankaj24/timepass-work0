@@ -1,0 +1,49 @@
+From f2c2f7ec98ca5bfda92d4691af46403348ae0d77 Mon Sep 17 00:00:00 2001
+From: Alexandre Frade <kernel@xanmod.org>
+Date: Mon, 16 Sep 2024 08:09:56 +0000
+Subject: [PATCH 17/19] XANMOD: lib/kconfig.debug: disable default
+ SYMBOLIC_ERRNAME and DEBUG_BUGVERBOSE
+
+Signed-off-by: Alexandre Frade <kernel@xanmod.org>
+---
+ fs/bcachefs/Kconfig | 1 -
+ lib/Kconfig.debug   | 4 ++--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/fs/bcachefs/Kconfig b/fs/bcachefs/Kconfig
+index fc7efd0a7525..0c195a1d00ac 100644
+--- a/fs/bcachefs/Kconfig
++++ b/fs/bcachefs/Kconfig
+@@ -24,7 +24,6 @@ config BCACHEFS_FS
+ 	select XOR_BLOCKS
+ 	select XXHASH
+ 	select SRCU
+-	select SYMBOLIC_ERRNAME
+ 	select MIN_HEAP
+ 	help
+ 	The bcachefs filesystem - a modern, copy on write filesystem, with
+diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
+index 35796c290ca3..969f39d2024d 100644
+--- a/lib/Kconfig.debug
++++ b/lib/Kconfig.debug
+@@ -190,7 +190,7 @@ config DYNAMIC_DEBUG_CORE
+ 
+ config SYMBOLIC_ERRNAME
+ 	bool "Support symbolic error names in printf"
+-	default y if PRINTK
++	default n
+ 	help
+ 	  If you say Y here, the kernel's printf implementation will
+ 	  be able to print symbolic error names such as ENOSPC instead
+@@ -200,7 +200,7 @@ config SYMBOLIC_ERRNAME
+ config DEBUG_BUGVERBOSE
+ 	bool "Verbose BUG() reporting (adds 70K)" if DEBUG_KERNEL && EXPERT
+ 	depends on BUG && (GENERIC_BUG || HAVE_DEBUG_BUGVERBOSE)
+-	default y
++	default n
+ 	help
+ 	  Say Y here to make BUG() panics output the file name and line number
+ 	  of the BUG call as well as the EIP and oops trace.  This aids
+-- 
+2.47.2
+

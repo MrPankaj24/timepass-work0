@@ -1,0 +1,26 @@
+From 805cc5d23a6b6b30c3ae4d7b5c3b4131d8769ad1 Mon Sep 17 00:00:00 2001
+From: Paolo Pisati <paolo.pisati@canonical.com>
+Date: Thu, 6 Feb 2025 15:40:09 +0100
+Subject: [PATCH 6/6] binder: turn into module - lock_vma_under_rcu()
+
+Signed-off-by: Paolo Pisati <paolo.pisati@canonical.com>
+Signed-off-by: Alexandre Frade <kernel@xanmod.org>
+---
+ mm/memory.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/mm/memory.c b/mm/memory.c
+index a33dfd2c2b55..2e640f47d1de 100644
+--- a/mm/memory.c
++++ b/mm/memory.c
+@@ -6589,6 +6589,7 @@ struct vm_area_struct *lock_vma_under_rcu(struct mm_struct *mm,
+ 	count_vm_vma_lock_event(VMA_LOCK_ABORT);
+ 	return NULL;
+ }
++EXPORT_SYMBOL_GPL(lock_vma_under_rcu);
+ #endif /* CONFIG_PER_VMA_LOCK */
+ 
+ #ifndef __PAGETABLE_P4D_FOLDED
+-- 
+2.47.2
+

@@ -1,0 +1,27 @@
+From 40f9fa82bb21a5e3f17f539897128a69824ad8ef Mon Sep 17 00:00:00 2001
+From: Alexandre Frade <kernel@xanmod.org>
+Date: Mon, 18 Nov 2024 20:17:44 +0000
+Subject: [PATCH 1/4] XANMOD: x86/build: Prevent generating avx2 floating-point
+ code
+
+Signed-off-by: Alexandre Frade <kernel@xanmod.org>
+---
+ arch/x86/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/x86/Makefile b/arch/x86/Makefile
+index bce510c97c34..2e47a7c6b2a0 100644
+--- a/arch/x86/Makefile
++++ b/arch/x86/Makefile
+@@ -80,7 +80,7 @@ endif
+ #
+ #    https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53383
+ #
+-KBUILD_CFLAGS += -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx
++KBUILD_CFLAGS += -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -mno-avx2
+ KBUILD_RUSTFLAGS += --target=$(objtree)/scripts/target.json
+ KBUILD_RUSTFLAGS += -Ctarget-feature=-sse,-sse2,-sse3,-ssse3,-sse4.1,-sse4.2,-avx,-avx2
+ 
+-- 
+2.47.2
+
